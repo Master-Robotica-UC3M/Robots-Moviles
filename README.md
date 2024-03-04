@@ -31,10 +31,10 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 ***
 ### RESULTADOS
 
-**[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.png):**
+**[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg):**
 
 <p algin="center">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO1_.jpg">
     
 </p>
