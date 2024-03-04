@@ -31,15 +31,30 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 ***
 ### RESULTADOS
 
-* **[ESCENARIO 1](https://github.com/Noelia-vera/Simuladores-de-Robots_Master-Robotica-_UC3M/blob/main/gazebo/gazebo-tools-master/Imagenes%20y%20videos/Obstacles.png):**
+**[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.png):**
 
 <p algin="center">
-    <img src="https://github.com/Noelia-vera/Simuladores-de-Robots_Master-Robotica-_UC3M/blob/main/gazebo/gazebo-tools-master/Imagenes%20y%20videos/Obstacles.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.png">
+    
 </p>
 
-**1. ESCENARIO 1:**
-**2. ESCENARIO 2:**
-**3. ESCENARIO 3:**
+**[2. ESCENARIO 2](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2.png):**
+
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2.png">
+</p>
+
+**[3. ESCENARIO 3](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png):**
+
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png">
+</p>
+
+**[4. ESTUDIO](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/estudio.png):**
+
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/estudio.png">
+</p>
 
 ***
 ### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
