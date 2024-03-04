@@ -31,15 +31,15 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 ***
 ### RESULTADOS
 
-1.  * **[ESCENARIO 1](https://github.com/Noelia-vera/Simuladores-de-Robots_Master-Robotica-_UC3M/blob/main/gazebo/gazebo-tools-master/Imagenes%20y%20videos/Obstacles.png):**
+* **[ESCENARIO 1](https://github.com/Noelia-vera/Simuladores-de-Robots_Master-Robotica-_UC3M/blob/main/gazebo/gazebo-tools-master/Imagenes%20y%20videos/Obstacles.png):**
 
 <p algin="center">
     <img src="https://github.com/Noelia-vera/Simuladores-de-Robots_Master-Robotica-_UC3M/blob/main/gazebo/gazebo-tools-master/Imagenes%20y%20videos/Obstacles.png">
 </p>
 
-2.  * **ESCENARIO 2:**
-3.  * **ESCENARIO 3:**
-4.  * **ESTUDIO:**
+**1. ESCENARIO 1:**
+**2. ESCENARIO 2:**
+**3. ESCENARIO 3:**
 
 ***
 ### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
