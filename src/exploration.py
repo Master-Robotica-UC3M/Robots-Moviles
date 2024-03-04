@@ -4,11 +4,8 @@ import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from nav_msgs.msg import OccupancyGrid
-from random import randint
 from visualization_msgs.msg import Marker
-from dynamic_reconfigure.client import Client
 
-import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -20,68 +17,58 @@ visited = []
 map_data = OccupancyGrid()
 
 localmin_counter = 0
+stucked_counter = 0
 
-tolerance = 0.5
-enlargement = 4
+tolerance = 0.5 # Tolerance radius around goal in meters
+enlargement = 4 # Enlargement of obstacles in cells
 
-next = None
-prev = None
+next = None # Next goal
+prev = None # Previoius goal
 
-x1_cell = None
-y1_cell = None
+x1_cell = None # Robot x position in cells
+y1_cell = None # Robot y position in cells
 
 start_time = rospy.Time(0)
 end_time = rospy.Time(0)
+finished = False
 
-def clustering(gap):
-    global x1, y1
-    X = []
+def clustering(gaps):
+    # Function to group the obtained gaps in cluster with K-Means
 
-    for g in gap:
-        X.append(g)
+    gaps = np.array(gaps).copy()
 
-    X = np.array(X).copy()
-
-    # Número máximo de clusters que queremos probar
+    # Maximum number of clusters
     max_k = 10
 
-    if max_k > len(gap):
-        max_k = len(gap)
+    if max_k > len(gaps): # Crop to number of gaps
+        max_k = len(gaps)
 
-    # Inicializar variables para almacenar los resultados
+
     sum_variances = []
 
-    # Iterar sobre diferentes valores de k
+    # Iteration to get the optimal value of K
     for k in range(1, max_k + 1):
-        # Crear un objeto de KMeans
-        kmeans = KMeans(n_clusters=k, random_state=42)
-
-        # Realizar el clustering
-        kmeans.fit(X)
-
-        # Calcular la suma de las varianzas de los clusters
-        sum_of_cluster_variances = sum(np.min(np.sum((X - kmeans.cluster_centers_[kmeans.labels_])**2, axis=1)) for k in range(kmeans.n_clusters))
         
-        # Guardar la suma de varianzas para este valor de k
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(gaps)
+
+        # Get the total variance for each K
+        sum_of_cluster_variances = sum(np.min(np.sum((gaps - kmeans.cluster_centers_[kmeans.labels_])**2, axis=1)) for k in range(kmeans.n_clusters))
         sum_variances.append(sum_of_cluster_variances)
 
-    # Encontrar el valor de k que minimiza la suma de varianzas
-    best_k = np.argmin(sum_variances) + 1  # Sumamos 1 porque los índices comienzan en 0
-
-    # Crear un objeto de KMeans con el mejor valor de k
+    # Optimal K value has lowest total variance:
+    best_k = np.argmin(sum_variances) + 1
     best_kmeans = KMeans(n_clusters=best_k, random_state=42)
+    best_kmeans.fit(gaps) # Create clusters with optimal K value
 
-    # Realizar el clustering con el mejor valor de k
-    best_kmeans.fit(X)
-
-    # Obtener las etiquetas de los clusters y los centroides
+    # Obtain cluster label and centroids for each gap
     labels = best_kmeans.labels_
     centroids = best_kmeans.cluster_centers_
 
-    # elements_per_cluster = [np.sum(labels==i) for i in range(best_k)]
-    # biggest_cluster = np.argmax(elements_per_cluster)
 
     '''
+    CODE TO GET CLOSEST CLUSTER:
+
     if x1_cell is not None and y1_cell is not None:
         closest_cluster = 0
         print('No se que es esto: ', centroids[closest_cluster][0])
@@ -114,34 +101,33 @@ def clustering(gap):
         print('Mas cercano: ', closest_cluster)
     '''
     
-    # else:
+    # Next goal position comes from biggest cluster (least explored area)
     elements_per_cluster = [np.sum(labels==i) for i in range(best_k)]
-    closest_cluster = np.argmax(elements_per_cluster)
+    next_cluster = np.argmax(elements_per_cluster)
     
     next_ok = False
 
     while not next_ok:
+        # Get random element from biggest cluster
+
         print(range(len(labels)))
         index = random.choice(range(len(labels)))
 
-        if labels[index] == closest_cluster:
+        if labels[index] == next_cluster:
             print("Escogido: ", labels[index])
             print(index)
-            next = X[index]
+            next = gaps[index]
             print(next)
             next_ok = True
 
     
     print("indice",index)
-    print(X[index])
-    # next = X[index]
+    print(gaps[index])
 
-
-    # Visualizar los clusters
-    
-
+    '''
+    # UNCOMMENT TO VISUALIZE CLUSTERS
     plt.figure(figsize=(6,8))
-    plt.scatter(X[:, 1], X[:, 0], c=labels, cmap='viridis')
+    plt.scatter(gaps[:, 1], gaps[:, 0], c=labels, cmap='viridis')
     if x1_cell is not None:
         plt.scatter(y1_cell,x1_cell,marker='x',color='blue') 
     plt.scatter(centroids[:, 1], centroids[:, 0], marker='x', color='red', s=200, label='Centroids')
@@ -150,6 +136,7 @@ def clustering(gap):
     plt.ylabel('Característica 2')
     plt.legend()
     plt.show()
+    '''
     
 
     return (next[0], next[1])
@@ -161,21 +148,25 @@ def feedback_callback(feedback):
     global x1, y1
     global x1_cell, y1_cell
 
+    # Robot Position in meters
     x1 = feedback.base_position.pose.position.x
     y1 = feedback.base_position.pose.position.y
 
-    y1_cell = (x1- map_data.info.origin.position.x)/map_data.info.resolution # OJO cambiado
-    x1_cell = (y1- map_data.info.origin.position.y)/map_data.info.resolution # OJO cambiado
+    # Robot Position in cells
+    y1_cell = (x1- map_data.info.origin.position.x)/map_data.info.resolution
+    x1_cell = (y1- map_data.info.origin.position.y)/map_data.info.resolution
 
+    # Goal position in meters
     x2 = next[1]*map_data.info.resolution + map_data.info.origin.position.x
     y2 = next[0]*map_data.info.resolution + map_data.info.origin.position.y
 
     dist = math.sqrt((x1-x2)**2 + (y1-y2)**2)
 
-    print('x1: ',x1)
-    print('y1: ',y1)
-    print(dist)
+    #print('x1: ',x1)
+    #print('y1: ',y1)
+    #print(dist)
     
+    # Cancel move_base if close enough to goal
     if dist < tolerance:
         print('Estás muy cerca')
 
@@ -184,7 +175,7 @@ def feedback_callback(feedback):
 
 
 def enlarge_obstacles(map, d=1):
-    # Función para engrosar los bordes
+    # Function to enlarge obstacles in 'd' number of cells
 
     rows = map.shape[0]
     cols = map.shape[1]
@@ -195,7 +186,7 @@ def enlarge_obstacles(map, d=1):
             for j in range(cols):
 
                 if map[i][j] == 100:
-                    # Para cada celda ocupada
+                    # For each occupied room
                     
                     for di in range(-d, d+1):
                         for dj in range(-d, d+1):
@@ -204,10 +195,13 @@ def enlarge_obstacles(map, d=1):
                     
                             if (0 <= ni < rows) and (0 <= nj < cols):
                                 
+                                #Enlarge neighbor cells
                                 enlarged_map[ni][nj] = 100
     
+    '''
     plt.imshow(enlarged_map, cmap = 'gray')
     plt.show()
+    '''
 
     return enlarged_map
 
@@ -217,6 +211,21 @@ def map_callback(map_msg):
     
     map_data = map_msg
 
+    free_cells = 0
+    occupied_cells = 0
+
+    if finished:
+        for i in map_data.data:
+            
+            if i == 0:
+                free_cells += 1
+            elif i == 100:
+                occupied_cells += 1
+
+        print('Free cells: ', free_cells)
+        print('Occupied cells: ', occupied_cells)
+    
+
 def select_and_publish_goal(event):
     print('MoveBase callback')
     global map_data
@@ -224,72 +233,67 @@ def select_and_publish_goal(event):
     global prev
     global next
     global localmin_counter
+    global stucked_counter
     global goal_client
     global enlargement
+    global finished
 
+    
 
     if map_data is not None:
         print('Eligiendo destino...')
+
         width = map_data.info.width
         height = map_data.info.height
 
-        print(width)
-        print(height)
-
-
-        A = np.reshape(map_data.data, (width, height))
+        map = np.reshape(map_data.data, (width, height))
         
-        print(A)
-        print(A.shape)
-        print(width, height)
-        
-        rows = A.shape[0]
-        cols = A.shape[1]
+        rows = map.shape[0]
+        cols = map.shape[1]
 
         
-        A = enlarge_obstacles(A,enlargement).copy()
+        map = enlarge_obstacles(map, enlargement).copy()
 
-        gap = []
-
-        B = np.zeros((rows, cols), dtype=int)
+        # Create array to store gaps
+        gaps = []
 
         for i in range(rows):
             for j in range(cols):
-
-                if A[i][j].astype(int) == 0 and (i,j) not in visited:
-                    # Para cada celda no ocupada
+                if map[i][j].astype(int) == 0 and [i,j] not in visited:
+                    # For each free cell
                     
-                    neighbours = [(i-1,j), (i+1,j), (i,j-1), (i,j+1)]
-                    vecinos_libres = 0
+                    neighbours = [[i-1,j], [i+1,j], [i,j-1], [i,j+1]]
+
                     for r, c in neighbours:
-                        if (0 <= r and r < rows) and (0 <= c and c < cols):
-                            if (A[r][c].astype(int) == -1): # En caso de adyacente a celda inexplorada
-                                gap.append((i,j))
-                                B[i][j] = 100
-                            elif (A[r][c].astype(int) == 0):
-                                vecinos_libres += 1
+                        if (0 <= r < rows) and (0 <= c < cols):
+                            if (map[r][c].astype(int) == -1):
+
+                                # Add gap if neighbor cell is not explored
+                                gaps.append([i,j])
+
+        # print(gaps)
                     
-                    #if (vecinos_libres == 4):
-                    #    B[i][j] = 5
-                        
-        
+        # Exploration ending condition
+        if len(gaps) == 0 or stucked_counter > 10:
+            if stucked_counter <=10: print('EXPLORATION FINISHED!!')
+            else: print('EXPLORATION ABORTED')
 
+            end_time = rospy.Time.now()
+            elapsed_time = end_time - start_time
+            print("Tiempo empleado en la exploración", elapsed_time.secs)
 
-        # candidates = [] 
+            finished = True
 
-        if len(gap) == 0:
-            print('¡EXPLORACIÓN COMPLETA!')
             exit(0)
         
         else:
-            # next = gap.pop(0)
-
-            rospy.sleep(3)
-
-            next = clustering(gap)
+            
+            rospy.sleep(3) # Wait to refresh map
+            next = clustering(gaps) # Next goal obtained from biggest cluster
 
             near = False
 
+            # Check if the goal has changed
             if prev is not None:
 
                 dist = np.array(next) - prev
@@ -299,32 +303,23 @@ def select_and_publish_goal(event):
                     near = True
                     localmin_counter += 1
             
-            if localmin_counter > 3:
-
-                #next = random.choice(gap)
+            if localmin_counter > 3: # Robot stucked in local minimum
 
                 for i in range(rows):
                     for j in range(cols):
-                        if A[i][j].astype(int) == 0:
-                            next = (i,j)
+                        if map[i][j].astype(int) == 0:
+                            next = [i,j] 
 
                 localmin_counter = 0
+                stucked_counter +=1
 
             prev = next
 
-            if not near:
+            if not near: # Goal not near to previous destination
                 
+                print('Goal selected. Navigating to: ', next)
                 visited.append(next)
-                   
-                        
-                map_data.data = np.reshape(B, (B.size))
-                map_pub.publish(map_data)
-                # next = candidates[0]
-                print(next)
-                
-                print('Destino elegido. Navegando hasta el punto...')
 
-                
                 
                 goal = MoveBaseGoal()
                 goal.target_pose.header.frame_id = "map"
@@ -336,15 +331,12 @@ def select_and_publish_goal(event):
                 print(goal.target_pose.pose.position.x, goal.target_pose.pose.position.y)
                 
 
-                goal_client.send_goal(goal, feedback_cb=feedback_callback)
+                goal_client.send_goal(goal, feedback_cb=feedback_callback) # Send goal
                 wait = goal_client.wait_for_result()
 
+                print('Goal reached!')
 
-
-                print('Punto alcanzado!')
-
-            else:
-                print('Skipping:', next)
+            else: print('Skipping: ', next) # Skip goal if close to previous destination
 
     return map
 
@@ -356,22 +348,14 @@ if __name__ == '__main__':
         map_subscriber = rospy.Subscriber('/map', OccupancyGrid, map_callback, queue_size=1)
         map_pub = rospy.Publisher('/map_2', OccupancyGrid, queue_size=1)
 
-        marker_pub = rospy.Publisher("/visualization_marker", Marker, queue_size = 2)
-
         goal_client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
         goal_client.wait_for_server()
 
         timer = rospy.Timer(rospy.Duration(1), select_and_publish_goal)
         start_time = rospy.Time().now()
-        rate = rospy.Rate(1)
 
         while not rospy.is_shutdown():
-            rate.sleep()
-            end_time = rospy.Time.now()
-            elapsed_time = end_time - start_time
-            
-            print("Tiempo empleado en la exploración", elapsed_time.secs)
-            #rospy.spin()
+            rospy.spin()
 
     except rospy.ROSInterruptException:
         rospy.loginfo("Exploration finished.")
