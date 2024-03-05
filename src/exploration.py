@@ -1,3 +1,9 @@
+# MASTER EN ROBOTICA Y AUTOMATIZACIÓN
+# ROBOTS MOVILES
+# NOELIA FERNANDEZ TALAVERA (100463135)
+# GONZALO FELIPE ESPINOZA CHONLON (100383960)
+# ANGELO VINCENZO BARRA (100520043)
+#------------------------------------------------------------------------------
 #!/usr/bin/env python
 
 import rospy
@@ -124,7 +130,7 @@ def clustering(gaps):
     print("indice",index)
     print(gaps[index])
 
-    '''
+  
     # UNCOMMENT TO VISUALIZE CLUSTERS
     plt.figure(figsize=(6,8))
     plt.scatter(gaps[:, 1], gaps[:, 0], c=labels, cmap='viridis')
@@ -135,9 +141,7 @@ def clustering(gaps):
     plt.xlabel('Característica 1')
     plt.ylabel('Característica 2')
     plt.legend()
-    plt.show()
-    '''
-    
+    plt.show()    
 
     return (next[0], next[1])
 
