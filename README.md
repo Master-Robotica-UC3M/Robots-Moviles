@@ -68,14 +68,14 @@ En la siguiente sección se ve la imagen de cada escenario, el mapa en RVIZ tele
 
 **TIEMPOS DE EXPLORACIÓN PARA 10 INTENTOS**
 |X| Escenario 1| Escenario 2 | Escenario 3 | Estudio|
-|   :---:    |     :---:      |      :---:    |    :---:  |
+|   :---:    |     :---:      |      :---:    |    :---:  | :---:  |
 | Media tiempo medio (segundos)  | 90,8 | 326,8 |-|324,3 |
 | Desviación estándar     | 30,3 | 62,3 |-|88,1|
 
 
 **PORCENTAJE DE MAPA EXPLORADO PARA 10 INTENTOS**
 |-| Escenario 1| Escenario 2 | Escenario 3 | Estudio|
-|   :---:    |     :---:      |      :---:    |    :---:  |
+|   :---:    |     :---:      |      :---:    |    :---:  |:---:|
 |Celdas Libres teleoperadas|8029,0|15667,0|15620,0|19309,0 |
 | Media celdas libres auto|7998,5|15623,0|12890,3|19253,3|
 |Desviación estándar celdas libres auto|28,5|48,0|3166,0|37,6|
