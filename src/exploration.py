@@ -25,8 +25,8 @@ map_data = OccupancyGrid()
 localmin_counter = 0
 stucked_counter = 0
 
-tolerance = 0.5 # Tolerance radius around goal in meters
-enlargement = 4 # Enlargement of obstacles in cells
+tolerance = 0.4 # Tolerance radius around goal in meters
+enlargement = 6 # Enlargement of obstacles in cells
 
 next = None # Next goal
 prev = None # Previoius goal
