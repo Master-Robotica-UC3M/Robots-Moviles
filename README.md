@@ -66,9 +66,10 @@ En la siguiente sección se ve la imagen de cada escenario, el mapa en RVIZ tele
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario4_t.jpg">
 </p>
 
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+|  | Escenario 1| Escenario 2 | Escenario 3 | Estudio|
+| :---:        |     :---:      |      :---:    |    :---:  |
+| Media tiempo medio (segundos)  | 90,8 | 326,8 |-|324,3 |
+| Desviación estándar     | 30,3 | 62,3 |-|88,1|
+
 ***
 ### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
