@@ -30,12 +30,14 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 
 ***
 ### RESULTADOS
+En la siguiente sección se ve la imagen de cada escenario, el mapa en RVIZ teleoperado y el que se registra con la exploración autónoma.
 
 **[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg):**
 
 <p algin="center">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO1_.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1_t.jpg">
     
 </p>
 
@@ -44,6 +46,7 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 <p algin="center">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2.png">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO2_.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2_t.jpg">
 </p>
 
 **[3. ESCENARIO 3](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png):**
@@ -51,6 +54,7 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 <p algin="center">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO3_.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3_t.jpg">
 
 </p>
 
@@ -59,7 +63,9 @@ En esta práctica se prentende generar un algortimo de exploración autónoma pa
 <p algin="center">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/estudio.png">
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESTUDIO_.jpg">  
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario4_t.jpg">
 </p>
+
 
 ***
 ### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
