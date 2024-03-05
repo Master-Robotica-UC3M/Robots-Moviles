@@ -74,7 +74,7 @@ En la siguiente sección se ve la imagen de cada escenario, el mapa en RVIZ tele
 
 
 **PORCENTAJE DE MAPA EXPLORADO PARA 10 INTENTOS**
-|X| Escenario 1| Escenario 2 | Escenario 3 | Estudio|
+|-| Escenario 1| Escenario 2 | Escenario 3 | Estudio|
 |   :---:    |     :---:      |      :---:    |    :---:  |
 |Celdas Libres teleoperadas|8029,0|15667,0|15620,0|19309,0 |
 | Media celdas libres auto|7998,5|15623,0|12890,3|19253,3|
