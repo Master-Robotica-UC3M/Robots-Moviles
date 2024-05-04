@@ -55,40 +55,64 @@ A medida que se realiza la identificación de nodos que se deberían seguir para
 ### RESULTADOS
 En la siguiente sección se ve la imagen de cada escenario, el mapa en RVIZ teleoperado y el que se registra con la exploración autónoma.
 
-**[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg):**
+**[1. ESCENARIO 1](https://github.com/Master-Robotica-UC3M/Robots-Moviles/tree/main/Practica%202_semantico/fotos):**
+
+Es esta imágenes see puede ver como se va generando el mapa topológico de nodos
 
 <p algin="center">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1.jpg">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO1_.jpg">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario1_t.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/1_1.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/1_2.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/1_3.png">
+    
+</p>
+A continuación se unen y se define el path que hay que seguir entre nodos para llegar a destino.
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/1_4.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/1_5.png">
     
 </p>
 
-**[2. ESCENARIO 2](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2.png):**
+**[2. ESCENARIO 2](https://github.com/Master-Robotica-UC3M/Robots-Moviles/tree/main/Practica%202_semantico/fotos):**
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_1.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_2.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_3.png">
+    
+</p>
+A continuación se unen y se define el path que hay que seguir entre nodos para llegar a destino.
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_4.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_5.png">
+    
+</p>
+**[3. ESCENARIO 3](https://github.com/Master-Robotica-UC3M/Robots-Moviles/tree/main/Practica%202_semantico/fotos):**
 
 <p algin="center">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2.png">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO2_.jpg">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario2_t.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/3_1.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/3_2.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/3_3.png">
+    
 </p>
-
-**[3. ESCENARIO 3](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png):**
-
+A continuación se unen y se define el path que hay que seguir entre nodos para llegar a destino.
 <p algin="center">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3.png">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESCENARIO3_.jpg">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario3_t.jpg">
-
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/3_4.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/3_5.png">
+    
 </p>
 
-**[4. ESTUDIO](https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/estudio.png):**
-
+**[4. ESTUDIO](https://github.com/Master-Robotica-UC3M/Robots-Moviles/tree/main/Practica%202_semantico/fotos):**
 <p algin="center">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/estudio.png">
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/ESTUDIO_.jpg">  
-    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/photos/escenario4_t.jpg">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/4_1.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/4_2.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/4_3.png">
+    
 </p>
-
+A continuación se unen y se define el path que hay que seguir entre nodos para llegar a destino.
+<p algin="center">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/4_4.png">
+    <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/4_5.png">
+    
+</p>
 
 ***
 ### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
