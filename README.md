@@ -27,11 +27,13 @@ Por lo tanto los objetivos definidos son:
 
 #### ALGORITMOS DESARROLLADOS:
 
-* **topoMap.py :** Lo primero que se ha hecho es modificar el archivo topoMap.py para lograr un buen procesado del mapa topológico y crear los nodos y necesarios para la posterior navegación. Se emplea el algoritmo proporcionado por la profesora de la asignatura.
+##### topoMap.py 
+Lo primero que se ha hecho es modificar el archivo topoMap.py para lograr un buen procesado del mapa topológico y crear los nodos y necesarios para la posterior navegación. Se emplea el algoritmo proporcionado por la profesora de la asignatura.
 La novedad reside en un método iterativo que ajusta los parámetros de segmentación para obtener un mapa topológico óptimo. Dentro de un bucle iterativo, se realizan múltiples iteraciones variando los parámetros de la segmentación. Después de cada iteración, se muestra la imagen resultante y se espera a que el usuario presione una tecla (q) para continuar con la siguiente iteración. Este enfoque iterativo proporciona una mayor flexibilidad, comodidad y control sobre el proceso de segmentación, lo que puede conducir a una mejor calidad del mapa topológico final. El usuario decide hasta qué punto debe seguir iterando el algoritmo cuando considere que el mapa esta correctamente segmentado, cuando presiona control + C en el terminal y q en la imagen.
 Este algoritmo solo se ejecuta una vez para conseguir los .txt necesarios para usarlos en la navegación de manera posterior.
 
-* **topoNav.py:** Se ha creado un código que implementa un sistema de navegación para que el robot pueda moverse entre nodos predefinidos en el mapa de forma que se planifiquen rutas optimas haciendo uso de un grafo topológico. 
+##### topoNav.py
+Se ha creado un código que implementa un sistema de navegación para que el robot pueda moverse entre nodos predefinidos en el mapa de forma que se planifiquen rutas optimas haciendo uso de un grafo topológico. 
 La clase GraphHandler se usa para manejar el grafo topológico del entorno del robot de forma que se puedan cargar nodos y conexiones desde los archivos .txt generados anteriormente. Partiendo de estos dos ficheros, el algoritmo para unir todos los nodos consta a grandes rasgos de los siguientes pasos.
 * Carga de los nodos y las conexiones. En el caso de los nodos se realiza un downsampling para no tener muchos nodos de la misma zona juntos. A cada uno se le asocia un identificador único.
 * Una vez se tienen todos los nodos, en un diccionario se almacenan las relaciones entre nodos, siendo las claves los identificadores de cada nodo, y los valores, los identificadores de los vecinos.
