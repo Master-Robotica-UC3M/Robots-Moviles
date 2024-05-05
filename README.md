@@ -85,6 +85,7 @@ A continuación se unen y se define el path que hay que seguir entre nodos para 
     <img src="https://github.com/Master-Robotica-UC3M/Robots-Moviles/blob/main/Practica%202_semantico/fotos/2_5.png">
     
 </p>
+
 **[3. ESCENARIO 3](https://github.com/Master-Robotica-UC3M/Robots-Moviles/tree/main/Practica%202_semantico/fotos):**
 
 <p algin="center">
@@ -115,4 +116,4 @@ A continuación se unen y se define el path que hay que seguir entre nodos para 
 </p>
 
 ***
-### [VIDEO DE DEMOSTRACIÓN](https://www.youtube.com/watch?v=36naFUwaNik)
+### [VIDEO DE DEMOSTRACIÓN](https://youtu.be/zQmId-kzHxM)
